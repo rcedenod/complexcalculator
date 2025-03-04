@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Números Complejos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Calculadora de Números Complejos</h1>
+    <form id="calculator-form">
+        <label>Formato de Entrada:</label>
+        <select id="input-format">
+            <option value="rectangular">Rectangular</option>
+            <option value="polar">Polar</option>
+        </select>
+        
+        <div id="rectangular-inputs">
+            <input type="number" id="real1" placeholder="Parte Real 1">
+            <input type="number" id="imag1" placeholder="Parte Imaginaria 1">
+            <input type="number" id="real2" placeholder="Parte Real 2">
+            <input type="number" id="imag2" placeholder="Parte Imaginaria 2">
+        </div>
+
+        <div id="polar-inputs" style="display: none;">
+            <input type="number" id="r1" placeholder="Magnitud 1">
+            <input type="number" id="theta1" placeholder="Ángulo 1 (radianes)">
+            <input type="number" id="r2" placeholder="Magnitud 2">
+            <input type="number" id="theta2" placeholder="Ángulo 2 (radianes)">
+        </div>
+        
+        <label>Operación:</label>
+        <select id="operation">
+            <option value="suma">Suma</option>
+            <option value="resta">Resta</option>
+            <option value="multiplicacion">Multiplicación</option>
+            <option value="division">División</option>
+        </select>
+        
+        <label>Formato de Salida:</label>
+        <select id="output-format">
+            <option value="rectangular">Rectangular</option>
+            <option value="polar">Polar</option>
+        </select>
+        
+        <button type="button" onclick="calculate()">Calcular</button>
+    </form>
+    
+    <h2>Resultado:</h2>
+    <p id="result"></p>
+    
+    <script src="script.js"></script>
+</body>
+</html>
