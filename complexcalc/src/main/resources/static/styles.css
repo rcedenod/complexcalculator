@@ -1,85 +1,90 @@
-/* Estilos generales */
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    background: #f2f2f2;
     color: #333;
+    padding: 20px;
 }
 
 h1 {
     text-align: center;
-    margin-top: 20px;
-    color: #4CAF50;
-}
-
-h2 {
-    color: #4CAF50;
-}
-
-/* Contenedor de la calculadora */
-#calculator-form {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-}
-
-input, select {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* Estilo de los campos de entrada para formato rectangular y polar */
-#rectangular-inputs, #polar-inputs {
     margin-bottom: 20px;
+    color: #2c3e50;
 }
 
-#polar-inputs input {
+/* Calculator Form */
+#calculator-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+#calculator-form label {
     display: block;
-    width: 48%;
-    margin-right: 4%;
-    margin-bottom: 10px;
-    float: left;
-}
-
-#polar-inputs input:last-child {
-    margin-right: 0;
-}
-
-/* Estilo para el resultado */
-#result {
-    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 5px;
     font-weight: bold;
-    color: #4CAF50;
+    color: #34495e;
+}
+
+#calculator-form select,
+#calculator-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* Button Style */
+#calculator-form button {
+    width: 100%;
+    padding: 12px;
+    background: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+#calculator-form button:hover {
+    background: #2980b9;
+}
+
+/* Result Styles */
+h2 {
     text-align: center;
-    margin-top: 20px;
+    color: #2c3e50;
+    margin-top: 30px;
+}
+
+#result {
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 15px;
+    background: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #calculator-form {
+        padding: 15px;
+    }
+    
+    #calculator-form button {
+        font-size: 14px;
+    }
 }
