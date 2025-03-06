@@ -1,0 +1,60 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+    <h1>Iniciar Sesión</h1>
+    <form id="login-form">
+        <label>Nombre de usuario:</label>
+        <input type="text" id="username" required><br><br>
+        
+        <label>Contraseña:</label>
+        <input type="password" id="password" required><br><br>
+
+        <a href="register">Registrate</a>
+
+        <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            console.log("fetch a login");
+
+            fetch('http://localhost:8080/api/auth/login', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    username: username,
+                    password: password
+                }),
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === "Login exitoso") {
+                    console.log("login exitoso");
+                    // Si el login es exitoso, redirige al usuario
+                    window.location.href = "calculator"; // Redirige a la página principal
+                } else {
+                    document.getElementById('message').textContent = "Credenciales inválidas";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

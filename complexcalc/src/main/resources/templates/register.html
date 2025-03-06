@@ -1,0 +1,58 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <h1>Registro de Usuario</h1>
+    <form id="register-form">
+        <label>Nombre de usuario:</label>
+        <input type="text" id="username" required><br><br>
+        
+        <label>Contraseña:</label>
+        <input type="password" id="password" required><br><br>
+
+        <a href="login">Logeate</a>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('http://localhost:8080/api/auth/register', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    username: username,
+                    password: password
+                }),
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('message').textContent = data;
+                if (data === "Registro exitoso") {
+                    // Si el registro es exitoso, redirige al login
+                    setTimeout(function() {
+                        window.location.href = "login"; // Redirige a login
+                    }, 2000); // Espera 2 segundos para la redirección
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

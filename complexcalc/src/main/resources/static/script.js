@@ -1,6 +1,13 @@
+console.log('cargando');
+
 document.getElementById('input-format').addEventListener('change', toggleInputFormat);
+document.getElementById('logout-button').addEventListener('click', logout);
+document.getElementById('calculate-button').addEventListener('click', calculate);
 
 function toggleInputFormat() {
+
+    console.log("toggleinputformat");
+
     const inputFormat = document.getElementById('input-format').value;
     const rectangularInputs = document.getElementById('rectangular-inputs');
     const polarInputs = document.getElementById('polar-inputs');
@@ -15,16 +22,14 @@ function toggleInputFormat() {
     clearForm();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    toggleInputFormat();
-});
-
 function calculate() {
+
+    console.log("ejecute calculate");
+
     const inputFormat = document.getElementById('input-format').value;
     const operation = document.getElementById('operation').value;
     const outputFormat = document.getElementById('output-format').value;
 
-    let url = '/api/complex/operacion';
     let params = new URLSearchParams();
     params.append("tipoOperacion", operation);
     params.append("inputFormat", inputFormat);
@@ -32,7 +37,7 @@ function calculate() {
 
     function isValidNumber(value) {
         value = value.replace(',', '.');
-        return !isNaN(value) && value.trim() !== '';
+        return !isNaN(value) && value.trim() !== ''  && value !== null;
     }
 
     if (inputFormat === 'rectangular') {
@@ -68,29 +73,55 @@ function calculate() {
         params.append("valor4", theta2);
     }
 
-    fetch(`${url}?${params.toString()}`)
-        .then(response => response.json())
-        .then(data => {
-            displayResult(data, outputFormat);
-        })
-        .catch(error => {
-            document.getElementById('result').innerText = 'Error al realizar el cálculo.';
-            console.error(error);
-        });
+    fetch(`http://localhost:8080/api/complex/operacion?${params.toString()}`, {
+       method: 'GET',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data == 'No tiene sesion') {
+            window.location.href = "login";
+        }
+
+        console.log(data);
+        displayResult(data, outputFormat);
+    })
+    .catch(error => {
+        document.getElementById('result').innerText = 'Error al realizar el cálculo.';
+        console.error(error);
+    });
 }
 
-function displayResult(data, outputFormat) {
-    const resultElement = document.getElementById('result');
+function logout() {
+    console.log("aprete logout");
 
-    if (outputFormat === 'rectangular') {
-        // Mostramos en formato rectangular (a + bi)
-        resultElement.innerText = `Resultado: ${data.real.toFixed(2)} + ${data.imaginary.toFixed(2)}i`;
-    } else if (outputFormat === 'polar') {
-        // Mostramos en formato polar (r(cosθ + i*sinθ))
-        resultElement.innerText = `Resultado: ${data.r.toFixed(2)}(cos(${data.theta.toFixed(2)}) + i*sin(${data.theta.toFixed(2)}))`;
-    }
+    fetch('http://localhost:8080/api/auth/logout', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data === "Sesion cerrada") {
+            console.log("listo");
+            window.location.href = "/"; // Redirige a la página de login
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+function displayResult(data) {
+    const resultElement = document.getElementById('result');
+    resultElement.innerText = data;
 }
 
 function clearForm() {
     document.querySelectorAll('#calculator-form input').forEach(input => input.value = '');
 }
+
