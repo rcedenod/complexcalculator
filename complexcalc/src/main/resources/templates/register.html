@@ -43,10 +43,7 @@
             .then(data => {
                 document.getElementById('message').textContent = data;
                 if (data === "Registro exitoso") {
-                    // Si el registro es exitoso, redirige al login
-                    setTimeout(function() {
-                        window.location.href = "login"; // Redirige a login
-                    }, 2000); // Espera 2 segundos para la redirección
+                    window.location.href = "login";
                 }
             })
             .catch(error => {

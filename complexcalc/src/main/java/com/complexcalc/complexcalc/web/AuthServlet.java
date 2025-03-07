@@ -43,7 +43,7 @@ public class AuthServlet extends HttpServlet {
             Optional<User> user = userRepository.findByUsername(username);
             if (user.isPresent() && user.get().getPassword().equals(password)) {
                 req.getSession().setAttribute("user", username);
-                req.getSession().setMaxInactiveInterval(10);
+                req.getSession().setMaxInactiveInterval(20);
                 resp.getWriter().write("Login exitoso");
                 
             } else {

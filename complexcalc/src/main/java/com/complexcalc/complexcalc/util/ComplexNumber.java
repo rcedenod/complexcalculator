@@ -9,34 +9,34 @@ public class ComplexNumber {
         this.imaginary = imaginary;
     }
 
-    public ComplexNumber add(ComplexNumber other) {
-        return new ComplexNumber(this.real + other.real, this.imaginary + other.imaginary);
+    public ComplexNumber sumar(ComplexNumber num) {
+        return new ComplexNumber(this.real + num.real, this.imaginary + num.imaginary);
     }
 
-    public ComplexNumber subtract(ComplexNumber other) {
-        return new ComplexNumber(this.real - other.real, this.imaginary - other.imaginary);
+    public ComplexNumber restar(ComplexNumber num) {
+        return new ComplexNumber(this.real - num.real, this.imaginary - num.imaginary);
     }
 
-    public ComplexNumber multiply(ComplexNumber other) {
+    public ComplexNumber multiplicar(ComplexNumber num) {
         return new ComplexNumber(
-            this.real * other.real - this.imaginary * other.imaginary,
-            this.real * other.imaginary + this.imaginary * other.real
+            this.real * num.real - this.imaginary * num.imaginary,
+            this.real * num.imaginary + this.imaginary * num.real
         );
     }
 
-    public ComplexNumber divide(ComplexNumber other) {
-        double denominator = other.real * other.real + other.imaginary * other.imaginary;
+    public ComplexNumber dividir(ComplexNumber num) {
+        double denominator = num.real * num.real + num.imaginary * num.imaginary;
         return new ComplexNumber(
-            (this.real * other.real + this.imaginary * other.imaginary) / denominator,
-            (this.imaginary * other.real - this.real * other.imaginary) / denominator
+            (this.real * num.real + this.imaginary * num.imaginary) / denominator,
+            (this.imaginary * num.real - this.real * num.imaginary) / denominator
         );
     }
 
-    public String toRectangularString() {
-        return String.format("z = %.2f + %.2fi", real, imaginary);
+    public String toRectangular() {
+        return String.format(" z = %.2f + %.2fi", real, imaginary);
     }
 
-    public String toPolarString() {
+    public String toPolar() {
         double r = Math.sqrt(real * real + imaginary * imaginary);
         double theta = Math.atan2(imaginary, real);
         return String.format("z = %.2f(cos(%.2f) + i*sin(%.2f))", r, theta, theta);

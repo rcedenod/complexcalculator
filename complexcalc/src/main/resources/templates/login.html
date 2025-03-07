@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    <title>Iniciar sesion</title>
 </head>
 <body>
-    <h1>Iniciar Sesión</h1>
+    <h1>Iniciar sesion</h1>
     <form id="login-form">
         <label>Nombre de usuario:</label>
         <input type="text" id="username" required><br><br>
@@ -17,7 +17,7 @@
 
         <a href="register">Registrate</a>
 
-        <button type="submit">Iniciar sesión</button>
+        <button type="submit">Iniciar sesion</button>
     </form>
 
     <p id="message"></p>
@@ -45,10 +45,9 @@
             .then(data => {
                 if (data === "Login exitoso") {
                     console.log("login exitoso");
-                    // Si el login es exitoso, redirige al usuario
-                    window.location.href = "calculator"; // Redirige a la página principal
+                    window.location.href = "calculator"; 
                 } else {
-                    document.getElementById('message').textContent = "Credenciales inválidas";
+                    document.getElementById('message').textContent = "Credenciales invalidas";
                 }
             })
             .catch(error => {

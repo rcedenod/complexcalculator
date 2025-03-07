@@ -13,19 +13,16 @@ public class ViewController {
 
     @GetMapping("/login")
     public String showLogin() {
-        // Retorna "login" y se espera que exista un archivo login.html en templates/
         return "login";
     }
 
     @GetMapping("/register")
     public String showRegister() {
-        // Retorna "register" y se espera que exista un archivo register.html en templates/
         return "register";
     }
 
     @GetMapping("/calculator")
     public String showCalculator() {
-        // Retorna "calculator" y se espera que exista un archivo calculator.html en templates/
         return "calculator";
     }
 }

@@ -35,16 +35,16 @@ public class ComplexCalculatorServlet extends HttpServlet {
 
         switch (tipoOperacion) {
             case "suma":
-                result = num1.add(num2);
+                result = num1.sumar(num2);
                 break;
             case "resta":
-                result = num1.subtract(num2);
+                result = num1.restar(num2);
                 break;
             case "multiplicacion":
-                result = num1.multiply(num2);
+                result = num1.multiplicar(num2);
                 break;
             case "division":
-                result = num1.divide(num2);
+                result = num1.dividir(num2);
                 break;
             default:
                 resp.getWriter().write("Operación invalida");
@@ -52,9 +52,9 @@ public class ComplexCalculatorServlet extends HttpServlet {
         }
 
         if (outputFormat.equals("polar")) {
-            resp.getWriter().write(result.toPolarString());
+            resp.getWriter().write(result.toPolar());
         } else {
-            resp.getWriter().write(result.toRectangularString());
+            resp.getWriter().write(result.toRectangular());
         }
     }
 }
